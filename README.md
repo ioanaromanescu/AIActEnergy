@@ -2,7 +2,7 @@
 
 **A plain-language guide to how the EU AI Act applies to the AI systems now in use across energy operations.**
 
-**[→ Open the interactive version](https://YOUR-USERNAME.github.io/ai-act-energy](https://ioanaromanescu.github.io/AIActEnergy/)** — a clickable risk map, the cards, and a short orientation tool.
+**[→ Open the interactive version](https://ioanaromanescu.github.io/AIActEnergy/)** — a clickable risk map, the cards, and a short orientation tool.
 
 ---
 
