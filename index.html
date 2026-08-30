@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in Energy Operations: An EU AI Act Guide</title>
+<meta name="description" content="A plain-language guide to how the EU AI Act applies to AI systems now in use across energy operations. General information, not legal advice.">
+<style>
+  :root{
+    --navy:#1F3B57; --navy-dark:#16293d; --orange:#E8630A;
+    --bg:#f5f6f8; --card:#ffffff; --ink:#1c2733; --muted:#5c6b7a;
+    --red:#c0392b; --amber:#d68910; --blue:#2e86c1; --green:#1e8449;
+    --border:#dde3ea;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  a{color:var(--navy)}
+  header{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:#fff;padding:2.4rem 1.5rem 2rem;text-align:center}
+  header h1{font-size:1.9rem;letter-spacing:.02em}
+  header .kicker{color:var(--orange);font-weight:700;text-transform:uppercase;font-size:.78rem;letter-spacing:.18em;margin-bottom:.5rem}
+  header .sub{color:#cfd9e4;font-size:1rem;margin-top:.35rem;font-weight:600}
+  header p.tag{max-width:46rem;margin:1rem auto 0;color:#cfd9e4;font-size:.96rem}
+  nav{display:flex;justify-content:center;gap:.4rem;background:var(--navy-dark);padding:.6rem 1rem;position:sticky;top:0;z-index:10;flex-wrap:wrap}
+  nav button{background:transparent;border:1px solid transparent;color:#b8c6d4;padding:.5rem 1.1rem;border-radius:6px;cursor:pointer;font-size:.92rem;font-weight:600}
+  nav button:hover{color:#fff}
+  nav button.active{background:var(--orange);color:#fff}
+  main{max-width:64rem;margin:0 auto;padding:2rem 1.2rem 4rem}
+  section{display:none}
+  section.visible{display:block}
+  h2{color:var(--navy);margin-bottom:.4rem}
+  .lede{color:var(--muted);margin-bottom:1.4rem;max-width:44rem}
+
+  .table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;min-width:680px;font-size:.88rem}
+  th{background:var(--navy);color:#fff;padding:.6rem .7rem;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+  td{padding:.55rem .7rem;border-top:1px solid var(--border);vertical-align:top}
+  tr.row{cursor:pointer}
+  tr.row:hover td{background:#eef3f8}
+  tr.soon{cursor:default;opacity:.75}
+  .pill{display:inline-block;padding:.1rem .55rem;border-radius:999px;font-size:.72rem;font-weight:700;color:#fff;white-space:nowrap}
+  .pill.amber{background:var(--amber)} .pill.blue{background:var(--blue)} .pill.green{background:var(--green)} .pill.gray{background:#8494a3}
+  .gdpr-h{color:var(--red);font-weight:700} .gdpr-m{color:var(--amber);font-weight:700} .gdpr-l{color:var(--green);font-weight:700}
+  .hint{font-size:.8rem;color:var(--muted);margin-top:.6rem}
+  .thesis{margin-top:1.4rem;background:var(--card);border-left:4px solid var(--orange);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;font-size:.93rem;color:var(--ink)}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+  .tile{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem;cursor:pointer;transition:transform .12s, box-shadow .12s;position:relative}
+  .tile:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(31,59,87,.12)}
+  .tile.soon{cursor:default;opacity:.6}
+  .tile .num{font-size:.72rem;font-weight:800;color:var(--orange);letter-spacing:.14em}
+  .tile h3{color:var(--navy);font-size:1.02rem;margin:.25rem 0 .45rem;padding-right:5rem}
+  .tile p{font-size:.84rem;color:var(--muted)}
+  .tile .pill{position:absolute;top:.9rem;right:.9rem}
+
+  .card-detail{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.6rem;margin-top:1rem}
+  .card-detail .back{background:none;border:none;color:var(--orange);font-weight:700;cursor:pointer;font-size:.9rem;margin-bottom:.8rem}
+  .card-detail h3{color:var(--navy);font-size:1.35rem;margin-bottom:1rem}
+  .block{margin-bottom:1.1rem}
+  .block h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--orange);margin-bottom:.3rem}
+  .block p, .block li{font-size:.93rem}
+  .block ul{padding-left:1.2rem}
+  .block li{margin-bottom:.3rem}
+  .card-note{font-size:.82rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.8rem}
+
+  .quiz{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;max-width:44rem;margin:0 auto}
+  .quiz .qnum{font-size:.78rem;font-weight:800;color:var(--orange);letter-spacing:.14em}
+  .quiz h3{color:var(--navy);margin:.4rem 0 .5rem;font-size:1.15rem}
+  .quiz p.note{color:var(--muted);font-size:.88rem;margin-bottom:1.2rem}
+  .quiz .btns{display:flex;gap:.7rem;flex-wrap:wrap}
+  .quiz .btns button{padding:.6rem 1.6rem;border-radius:8px;border:2px solid var(--navy);background:#fff;color:var(--navy);font-weight:700;cursor:pointer;font-size:.95rem}
+  .quiz .btns button:hover{background:var(--navy);color:#fff}
+  .progress{height:5px;background:var(--border);border-radius:3px;margin-bottom:1.4rem;overflow:hidden}
+  .progress div{height:100%;background:var(--orange);width:0;transition:width .25s}
+  .result{border-radius:12px;padding:1.6rem;color:#fff;margin-bottom:1rem}
+  .result h3{margin-bottom:.5rem}
+  .result p{font-size:.93rem}
+  .result.red{background:var(--red)} .result.amber{background:var(--amber)} .result.blue{background:var(--blue)} .result.green{background:var(--green)}
+  .overlay-note{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--amber);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;font-size:.9rem;margin-bottom:1rem}
+  .restart{background:var(--navy);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:8px;font-weight:700;cursor:pointer}
+
+  .about-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.6rem;max-width:44rem}
+  .about-box p{margin-bottom:.8rem;font-size:.94rem}
+  footer{text-align:center;color:var(--muted);font-size:.8rem;padding:1.5rem;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">EU AI Act</div>
+  <h1>AI in Energy Operations</h1>
+  <div class="sub">A guide to the EU AI Act, one use case at a time</div>
+  <p class="tag">Much of the AI the sector talks about sits at the lighter end of the EU AI Act. Much of the AI that arrives quietly, as a feature of something already installed, is where the obligations gather. This guide walks through that landscape one use case at a time, based on public sources and on current trends in how AI is used across the industry.</p>
+</header>
+
+<nav>
+  <button class="active" data-tab="matrix">The map</button>
+  <button data-tab="cards">The cards</button>
+  <button data-tab="triage">Orientation tool</button>
+  <button data-tab="about">About</button>
+</nav>
+
+<main>
+
+<section id="matrix" class="visible">
+  <h2>Twelve use cases, one map</h2>
+  <p class="lede">Where each use case tends to sit, and how much the GDPR matters alongside. Click a row to open its card.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Use case</th><th>Tends to sit</th><th>Why</th><th>GDPR</th></tr></thead>
+      <tbody id="matrix-body"></tbody>
+    </table>
+  </div>
+  <p class="hint">These are general orientations for the typical deployment, not classifications of any particular system. The cards set out the boundary cases. Rows without a card yet are marked "coming soon."</p>
+  <div class="thesis"><strong>The pattern worth noticing:</strong> the AI that gets presented at conferences is mostly at the lighter end, and the AI that arrives as a feature of something already installed is where the obligations gather.</div>
+</section>
+
+<section id="cards">
+  <h2>The cards</h2>
+  <p class="lede">One page per use case. Five blocks, always the same: what it is, where it tends to sit under the AI Act, points to consider if you deploy it, the GDPR overlay, and the questions worth asking.</p>
+  <div class="card-grid" id="card-grid"></div>
+  <div id="card-detail"></div>
+</section>
+
+<section id="triage">
+  <h2>Orientation tool</h2>
+  <p class="lede">Seven questions to point you at the parts of the EU AI Act most likely to be relevant to a given system. It gives you a reading direction, not an assessment.</p>
+  <div class="quiz" id="quiz"></div>
+</section>
+
+<section id="about">
+  <h2>About this guide</h2>
+  <div class="about-box">
+    <p>This guide began as a personal research project on how the EU AI Act applies to the kinds of AI systems now appearing across energy operations. Each page takes one use case, describes what the technology does, points to the parts of the regulation most likely to be relevant, and notes the questions worth asking before deployment.</p>
+    <p>Everything here is compiled from public sources: Regulation (EU) 2024/1689 and its recitals, European Commission guidance, the GDPR together with EDPB and national supervisory authority guidance, and publicly announced industry AI programmes. The use cases reflect current trends in how AI is being used in the sector.</p>
+    <p>This is a guide and general information only. It does not constitute legal advice, and every real deployment needs its own assessment.</p>
+    <p><strong>Ioana Romanescu</strong> · <a href="https://www.linkedin.com/in/ioana-romanescu/">LinkedIn</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>AI in Energy Operations: An EU AI Act Guide · © 2026 Ioana Romanescu · A guide and general information, not legal advice</footer>
+
+<script>
+const TIERS = {
+  amber: {label:'Named in Annex III', cls:'amber'},
+  blue:  {label:'Transparency', cls:'blue'},
+  green: {label:'Lighter end', cls:'green'},
+  edge:  {label:'Depends on design', cls:'gray'}
+};
+
+const USECASES = [
+  {id:1, name:'Predictive maintenance on rotating equipment', tier:'green', why:'Minimal in the usual advisory setup; Annex I becomes relevant where the system acts on regulated machinery (2027)', gdpr:'l', card:true},
+  {id:2, name:'Autonomous inspection drones and robots', tier:'green', why:'Minimal for asset inspection; EU drone rules run alongside as their own regime', gdpr:'m', card:true},
+  {id:3, name:'GenAI assistants on engineering and HSE documents', tier:'blue', why:'Article 50 transparency; general-purpose model duties sit upstream with the provider', gdpr:'m', card:true},
+  {id:4, name:'Seismic interpretation and reservoir modelling', tier:'green', why:'No individuals involved; the general-purpose supply chain inside vendor platforms is the thing to trace', gdpr:'l', card:false},
+  {id:5, name:'Corrosion and integrity detection', tier:'green', why:'Object detection on assets; the practical questions are contractual rather than classificatory', gdpr:'l', card:false},
+  {id:6, name:'Methane and emissions monitoring (MRV)', tier:'green', why:'Lighter end of the AI Act; the EU Methane Regulation is the live instrument here', gdpr:'l', card:false},
+  {id:7, name:'Energy trading and price forecasting', tier:'green', why:'Outside the listed categories; market and conduct rules apply instead', gdpr:'l', card:false},
+  {id:8, name:'Drilling automation', tier:'amber', why:'Annex I becomes relevant as product rules phase in from August 2027', gdpr:'l', card:false},
+  {id:9, name:'Gas-grid and electricity supply management', tier:'amber', why:'Annex III point 2 names safety components in critical infrastructure', gdpr:'m', card:false},
+  {id:10, name:'Computer vision for site safety', tier:'edge', why:'Depends on whether outputs stay at the level of alerts or attach to identified individuals', gdpr:'h', card:false},
+  {id:11, name:'Fatigue and drowsiness monitoring', tier:'edge', why:'Depends on system design; Recital 18 addresses physical states such as fatigue', gdpr:'h', card:false},
+  {id:12, name:'Workforce screening, scheduling, and competency tools', tier:'amber', why:'Annex III point 4 names employment and worker management', gdpr:'h', card:false},
+];
+
+const NOTE = 'This card is general information based on public sources and on current trends in how AI is used across energy operations. It is a guide, not legal advice, and no system should be classified on the basis of it alone.';
+
+const CARDS = {
+1:{title:'CARD 01 — Predictive maintenance on rotating equipment', teaser:'The sector’s most established AI use case, and mostly a reassuring story, once you know where the two boundaries run.',
+blocks:[
+['What it is','Machine-learning models watch sensor data from pumps, compressors, and turbines, vibration, temperature, pressure, and flag likely failure before it happens. This is the most established AI use case in the industry; the largest publicised programmes monitor many thousands of pieces of equipment.'],
+['AI Act status','Generally at the lighter end, with two boundaries to watch. Predicting equipment failure is not among the prohibited practices and does not correspond to an Annex III category. The picture changes where: (1) the model functions as a safety component of a product covered by EU harmonisation legislation listed in Annex I, for example machinery. A tool that flags a failing seal for human attention is one thing; a system that trips equipment on its own deserves a closer look, and this route applies from August 2027. (2) The equipment forms part of critical infrastructure, since Annex III point 2 names safety components in the management of critical energy infrastructure.'],
+['If you deploy it',['Record, in writing with the vendor, whether the system recommends or acts. That single line drives most of the analysis.','Article 4 applies to every AI system, including this one: the people acting on the predictions should understand what the model can and cannot tell them.','Where a system does fall into the high-risk category, deployer duties under Article 26 come with it, including human oversight by competent staff, attention to input data, monitoring, and retention of the logs the system generates.']],
+['GDPR overlay','Light in the usual setup, because the data describes machines. The edges are worth watching: control-room logs tied to named operators, or shift data joined to equipment events, can turn a maintenance tool into something that also describes people, which is a different analysis.'],
+['Red flags',['The vendor offers to extend the model to score operator behaviour.','Autonomy creep: the tool that used to recommend now acts, and nobody revisited the original assessment.','The contract is silent on who retrains the model after a missed failure, and who carries the downtime.','Alarm fatigue, so many flags that operators stop reading them. Oversight that nobody performs is not oversight.']]]},
+2:{title:'CARD 02 — Autonomous inspection drones and robots', teaser:'Mostly light under the AI Act, with a second regime for the flying and a privacy question nobody plans for.',
+blocks:[
+['What it is','Drones, crawlers, and legged robots that inspect flares, storage tanks, pipelines, and offshore and subsea structures, with computer vision reading the imagery for corrosion, leaks, deformation, and coating failure. Operators across the sector publicise these programmes, usually on the argument that they take people out of confined spaces, off ropes, and away from height.'],
+['AI Act status','Generally minimal risk, with two boundaries and one regime that sits alongside. Detecting the condition of an asset is not a prohibited practice, and inspection of equipment does not correspond to an Annex III category. The classification can change where the AI acts as a safety component of a product covered by the Annex I legislation, for example machinery; systems that only report findings for human review sit outside that, and this route applies from August 2027. Separately, the flying itself is governed by the EU drone rules (Regulations 2019/947 and 2019/945), which are their own regime with their own operator categories, authorisations, and pilot requirements. Compliance there is not evidence of compliance under the AI Act, and the reverse is equally true.'],
+['If you deploy it',['Record the intended purpose in writing with the vendor, and note whether the system recommends or acts.','Article 4 applies: the inspectors and engineers reading the outputs should understand the model’s limits, particularly what it tends to miss.','Confirm the aviation and product-safety side separately, with whoever owns those questions in the organisation.','Agree in advance what happens when the model misses a defect a human inspector would have caught, and who reviews the imagery in that case.']],
+['GDPR overlay','Medium. The inspection target is an asset, but the footage very often is not only the asset. Site imagery captures workers going about their day, and aerial routes can cross neighbouring land, roads, and housing. Purpose limitation is the discipline: the footage was collected for asset integrity, and reusing it for something else is a new purpose needing its own analysis. Blurring of faces and plates, tight retention, narrow access, and clear information for people on site are worth putting in place from the start.'],
+['Red flags',['Inspection footage reused for a purpose nobody agreed at the outset.','Flight paths over housing or public roads planned without anyone asking the privacy question.','The contract is silent on missed defects, which are a maintenance failure with a legal tail.','Growing autonomy around people, with no one revisiting the original assessment.','Aviation compliance assumed because the vendor handles it, with nothing in writing.']]]},
+3:{title:'CARD 03 — Generative AI assistants on engineering and HSE documents', teaser:'Rarely high-risk, but it carries a disclosure duty, an upstream supply chain, and one very easy way to change category.',
+blocks:[
+['What it is','Chat assistants built over an organisation’s own documentation: decades of well reports, technical standards, operating procedures, permits, and incident databases. Typical uses are answering procedural questions, summarising standards, locating precedent in old reports, and drafting first versions of routine documents. Several operators have publicised in-house models and assistants of this kind.'],
+['AI Act status','Usually outside the high-risk categories, with a transparency duty and a supply chain to check. Searching and summarising an organisation’s own technical documents does not correspond to an Annex III category. Article 50 applies from August 2026: people must be informed they are interacting with an AI system where that is not obvious, and generated content must be marked as artificially generated in machine-readable form. The general-purpose AI layer sits upstream: since August 2025, providers of general-purpose models carry their own obligations, including technical documentation, information for downstream providers, a copyright policy, and a public summary of training content, which is a good reason to ask a vendor what it can show. The category can also move if the assistant is pointed at a different job; one that begins with engineering documents and ends up informing decisions about workers is in Annex III point 4 territory, which is a different conversation.'],
+['If you deploy it',['Say clearly, in the interface, that this is an AI assistant.','Article 4 does the heavy lifting here. Users need a realistic picture of how a language model fails: fluently, confidently, and often on the detail that matters.','Write down which questions the tool may be used for and which it may not, with safety-critical procedures on the explicit list.','Keep a human between the assistant and anything that becomes a permit, a procedure, or an instruction to a crew.','Ask the vendor for the upstream documentation, and read what the terms say about whether prompts and documents train anything.']],
+['GDPR overlay','Medium. The documents are technical, but incident reports, permits, and HSE records name people and describe what happened to them, sometimes including health information. Prompts and outputs are usually processed by the vendor and often logged. The practical checklist is a lawful basis for the underlying records, a processor agreement covering the assistant, clarity on training use, retention limits on prompt logs, and a look at where the processing physically happens.'],
+['Red flags',['A confidently invented clause from a standard, pasted into a procedure by someone who had no reason to doubt it.','Scope creep from documents to people.','Answers quoted as authority in meetings, with nobody opening the source.','Vendor terms silent on whether prompts and uploaded documents train the model.','No record of what the assistant has been asked, which makes any later review impossible.']]]}
+};
+
+const QUESTIONS = [
+ {q:'Does the system infer emotions or intentions of people at work, such as stress, anger, or engagement?', note:'Physical states such as fatigue or pain are addressed separately in Recital 18. Answer for emotions and intentions only.', flag:'emotion'},
+ {q:'Does it categorise people using biometric data to infer sensitive attributes, such as ethnicity, political views, or health?', note:'Any feature that sorts people by what their face or body supposedly reveals.', flag:'biometric'},
+ {q:'Is it a safety component of a physical product covered by EU product legislation, machinery, vehicles, pressure equipment?', note:'A system that can trip, stop, or steer equipment on its own, where that equipment needs third-party certification.', flag:'annex1'},
+ {q:'Is it used in managing or operating critical infrastructure, such as gas networks or electricity supply?', note:'Annex III point 2 names safety components in critical infrastructure.', flag:'infra'},
+ {q:'Is it used for recruitment, task allocation, or monitoring and evaluating the performance or behaviour of identified workers?', note:'This includes safety systems whose outputs end up attached to individual workers.', flag:'employment'},
+ {q:'Does it interact with people directly, or generate text, images, or reports people might take for human work?', note:'Article 50 transparency duties.', flag:'transparency'},
+ {q:'Does it process personal data, including camera footage in which people are identifiable?', note:'This decides whether the GDPR runs alongside, whatever the AI Act picture.', flag:'gdpr'}
+];
+
+const tabs = document.querySelectorAll('nav button');
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  document.querySelectorAll('main section').forEach(s=>s.classList.remove('visible'));
+  document.getElementById(b.dataset.tab).classList.add('visible');
+}));
+function goTab(name){document.querySelector(`nav button[data-tab="${name}"]`).click();}
+
+const gLabel={h:['gdpr-h','High'],m:['gdpr-m','Medium'],l:['gdpr-l','Low']};
+const mb=document.getElementById('matrix-body');
+USECASES.forEach(u=>{
+  const t=TIERS[u.tier], g=gLabel[u.gdpr];
+  const tr=document.createElement('tr');
+  tr.className=u.card?'row':'row soon';
+  tr.innerHTML=`<td>${String(u.id).padStart(2,'0')}</td>
+    <td><strong>${u.name}</strong>${u.card?'':' <span style="color:var(--muted);font-size:.75rem">(card coming soon)</span>'}</td>
+    <td><span class="pill ${t.cls}">${t.label}</span></td>
+    <td>${u.why}</td>
+    <td><span class="${g[0]}">${g[1]}</span></td>`;
+  if(u.card) tr.addEventListener('click',()=>{goTab('cards');openCard(u.id);});
+  mb.appendChild(tr);
+});
+
+const grid=document.getElementById('card-grid');
+const detail=document.getElementById('card-detail');
+USECASES.forEach(u=>{
+  const tile=document.createElement('div');
+  tile.className='tile'+(u.card?'':' soon');
+  const t=TIERS[u.tier];
+  tile.innerHTML=`<div class="num">CARD ${String(u.id).padStart(2,'0')}</div>
+    <span class="pill ${t.cls}">${t.label}</span>
+    <h3>${u.name}</h3>
+    <p>${u.card?CARDS[u.id].teaser:'Coming soon. New cards are added regularly.'}</p>`;
+  if(u.card) tile.addEventListener('click',()=>openCard(u.id));
+  grid.appendChild(tile);
+});
+function openCard(id){
+  const c=CARDS[id];
+  grid.style.display='none';
+  detail.innerHTML=`<div class="card-detail">
+    <button class="back" onclick="closeCard()">← All cards</button>
+    <h3>${c.title}</h3>
+    ${c.blocks.map(([h,body])=>`<div class="block"><h4>${h}</h4>${
+      Array.isArray(body)?'<ul>'+body.map(x=>`<li>${x}</li>`).join('')+'</ul>':`<p>${body}</p>`
+    }</div>`).join('')}
+    <p class="card-note">${NOTE}</p>
+  </div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function closeCard(){detail.innerHTML='';grid.style.display='grid';}
+
+const quiz=document.getElementById('quiz');
+let qi=0, answers={};
+function renderQ(){
+  if(qi>=QUESTIONS.length){return renderResult();}
+  const q=QUESTIONS[qi];
+  quiz.innerHTML=`<div class="progress"><div style="width:${(qi/QUESTIONS.length)*100}%"></div></div>
+    <div class="qnum">QUESTION ${qi+1} OF ${QUESTIONS.length}</div>
+    <h3>${q.q}</h3><p class="note">${q.note}</p>
+    <div class="btns"><button onclick="answer(true)">Yes</button><button onclick="answer(false)">No</button></div>`;
+}
+function answer(v){answers[QUESTIONS[qi].flag]=v;qi++;renderQ();}
+function renderResult(){
+  let tier, title, text;
+  if(answers.emotion||answers.biometric){
+    tier='red'; title='Start with Article 5';
+    text='Article 5 lists practices that are prohibited outright, and two of them concern inferring emotions in the workplace and categorising people biometrically by sensitive attributes. Both carry the highest penalty band. Article 5 also contains narrow exceptions, and Recital 18 addresses physical states such as fatigue separately, so the boundaries genuinely matter here. This is the area where professional advice is most worth taking before anything is deployed.';
+  } else if(answers.annex1||answers.infra||answers.employment){
+    tier='amber'; title='Look at the high-risk regime';
+    text='Your answers point toward the categories the Act treats as high-risk: '+
+      (answers.employment?'Annex III point 4, employment and worker management. ':'')+
+      (answers.infra?'Annex III point 2, critical infrastructure. ':'')+
+      (answers.annex1?'Annex I, safety components of regulated products, which applies from August 2027. ':'')+
+      'Worth reading next: Article 6 on classification, including the Article 6(3) filter, and Article 26 on what deployers are expected to do, which covers human oversight, input data, monitoring, logs, and informing workers before workplace systems go live.';
+  } else if(answers.transparency){
+    tier='blue'; title='Article 50 is your section';
+    text='Your answers do not point toward the high-risk categories, but Article 50 sets out transparency duties: telling people they are interacting with an AI system, and marking generated content as artificially generated. Where the system is built on a general-purpose model, the model provider carries its own obligations upstream, and it is reasonable to ask what documentation they can provide.';
+  } else {
+    tier='green'; title='Likely the lighter end';
+    text='On these answers the system does not point toward the prohibited practices, the high-risk categories, or the Article 50 duties. Article 4 still applies to every AI system: the people using it should understand what it can and cannot do. Worth revisiting whenever the use case changes, since the classification follows the use, not the technology.';
+  }
+  quiz.innerHTML=`<div class="result ${tier}"><h3>${title}</h3><p>${text}</p></div>
+    ${answers.gdpr?'<div class="overlay-note"><strong>The GDPR runs alongside:</strong> the system processes personal data, so data protection questions apply whatever the AI Act picture, including a lawful basis, an impact assessment where monitoring is systematic, information duties toward the people concerned, and retention limits. National employment law can add its own steps, and in France works council consultation typically comes first.</div>':''}
+    <p class="hint" style="margin-bottom:1rem">This tool points you toward the relevant parts of the regulation. It is general information, not an assessment of any particular system, and not legal advice.</p>
+    <button class="restart" onclick="restart()">Start again</button>`;
+}
+function restart(){qi=0;answers={};renderQ();}
+renderQ();
+</script>
+</body>
+</html>
